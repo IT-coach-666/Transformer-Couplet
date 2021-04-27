@@ -31,10 +31,8 @@ tar xf apr-1.6.2.tar.gz
 mv  apr-1.6.2  httpd-2.4.27/srclib/apr
 tar xf apr-util-1.6.0.tar.gz
 mv apr-util-1.6.0  httpd-2.4.27/srclib/apr-util
-```
 
-以下之所以解压并重新归档压缩, 是因为 httpd 依赖于 apr, 在 .spec 中指定这个过程比较麻烦, 所以我就直接这么做了
-```shell
+# 以下之所以解压并重新归档压缩, 是因为 httpd 依赖于 apr, 在 .spec 中指定这个过程比较麻烦, 所以我就直接这么做了
 tar -jcvf  httpd-2.4.27.tar.bz2  httpd-2.4.27
 mv httpd-2.4.27.tar.bz2 ~/rpmbuild/SOURCES
 ```
