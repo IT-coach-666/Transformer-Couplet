@@ -17,7 +17,7 @@ mkdir BUILD RPMS SOURCES SPECS SRPMS
 - RPMS      存放编译好后的rpm包
 - SRPMS     存放编译好后的srpm包
 
-###（2）下载 httpd-2.4.27.tar.bz2
+### （2）下载 httpd-2.4.27.tar.bz2
 在 http://archive.apache.org/dist/httpd/ 中查找相应版本；
 ```shell
     wget http://183.207.33.43:9011/archive.apache.org/c3pr90ntc0td/dist/httpd/httpd-2.4.27.tar.bz2
