@@ -42,3 +42,60 @@ mv apr-util-1.6.0  httpd-2.4.27/srclib/apr-util
 tar -jcvf  httpd-2.4.27.tar.bz2  httpd-2.4.27
 mv httpd-2.4.27.tar.bz2 ~/rpmbuild/SOURCES
 ```
+
+```shell
+# 创建并编辑 ~/rpmbuild/SOURCES/httpd 如下(提供给启动脚本 httpd 的配置, 以下对应 httpd 安装在 /etc/httpd 中):
+:<<!
+HTTPD=/etc/httpd/bin/httpd
+PIDFILE=/etc/httpd/logs/httpd.pid
+!
+
+
+# 创建 ~/rpmbuild/SPECS/httpd2.4.spec 并编辑如下:
+:<<!
+Name:           httpd
+Version:        2.4.27
+Release:        1%{?dist}
+Summary:        a rpm package made by jyhuang 2021.04.27
+
+License:        GPL
+URL:            httpd-2.4.27.tar.bz2
+Source0:        httpd-2.4.27.tar.bz2
+Source1:        httpd
+Source2:        httpd.init
+
+BuildRequires:  gcc
+Requires:       make
+
+%description
+a  web server
+
+
+%prep
+%setup -q
+%build
+rm -rf %{buildroot}
+./configure  --prefix=/etc/httpd --sysconfdir=/etc/httpd/conf  --with-included-apr  --with-included-apr-util --enable-mpms-shared=all
+make %{?_smp_mflags}
+%install
+%make_install
+%{__install} -p -D %{SOURCE1} %{buildroot} /etc/sysconfig/httpd
+%{__install} -p -D %{SOURCE2} %{buildroot} /etc/rc.d/init.d/httpd
+
+%post
+if  [ $1 == 1 ]; then
+         /sbin/chkconfig  --add httpd
+fi
+%files
+!
+
+# 执行打包并测试安装:
+cd  ~/rpmbuild/SPECS
+rpmbuild -bb httpd2.4.spec
+# 如果没出错的话会在 ~/rpmbuild/RPMS 下的对应架构目录下生成两个rpm包, 一个是
+# 我们要的, 一个是 debug 信息包, 如:
+:<<!
+httpd-2.4.27-1.el6.x86_64.rpm
+httpd-debuginfo-2.4.27-1.el6.x86_64.rpm
+!
+```
