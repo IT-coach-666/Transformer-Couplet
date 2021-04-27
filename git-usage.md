@@ -10,7 +10,7 @@ git add --all                    # 更新所有文件（注意是两个“-”�
 git add /path/to/file      # 只更新一个文件
 
 git commit -m "first commit"
-git push -u origin main    # 其中，黄色标注根据实际情况填写，可能是“master”，可通过“git branch”查看；根据提示，输入账号密码：92**35@qq.com + hj***3）
+git push -u origin main  [-f]   # 其中，黄色标注根据实际情况填写，可能是“master”，可通过“git branch”查看；根据提示，输入账号密码：92**35@qq.com + hj***3）
 ```
 
 
