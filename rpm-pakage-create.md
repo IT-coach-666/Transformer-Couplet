@@ -17,19 +17,15 @@ mkdir BUILD RPMS SOURCES SPECS SRPMS
 - RPMS      存放编译好后的rpm包
 - SRPMS     存放编译好后的srpm包
 
-### （2）下载 httpd-2.4.27.tar.bz2
-在 http://archive.apache.org/dist/httpd/ 中查找相应版本；
+### （2）下载 httpd-2.4.27.tar.bz2 以及其依赖包 apr
 ```shell
-    wget http://183.207.33.43:9011/archive.apache.org/c3pr90ntc0td/dist/httpd/httpd-2.4.27.tar.bz2
-```
-在 http://archive.apache.org/dist/apr/ 中查找 apr 包的相应版本;
-```shell
+# 在 http://archive.apache.org/dist/httpd/ 中查找相应版本；
+wget http://183.207.33.43:9011/archive.apache.org/c3pr90ntc0td/dist/httpd/httpd-2.4.27.tar.bz2
+# 在 http://archive.apache.org/dist/apr/ 中查找 apr 包的相应版本;
 wget http://183.207.33.35:9011/archive.apache.org/c3pr90ntc0td/dist/apr/apr-1.6.2.tar.gz
 wget http://183.207.33.35:9011/archive.apache.org/c3pr90ntc0td/dist/apr/apr-util-1.6.0.tar.gz
-```
 
-
-```shell
+# 解压、并将依赖包放入 httpd 相关目录
 tar xf httpd-2.4.27.tar.bz2
 tar xf apr-1.6.2.tar.gz
 mv  apr-1.6.2  httpd-2.4.27/srclib/apr
