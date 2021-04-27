@@ -37,6 +37,7 @@ tar -jcvf  httpd-2.4.27.tar.bz2  httpd-2.4.27
 mv httpd-2.4.27.tar.bz2 ~/rpmbuild/SOURCES
 ```
 
+### （3）使用 rpm 工具进行打包
 ```shell
 # 创建并编辑 ~/rpmbuild/SOURCES/httpd 如下(提供给启动脚本 httpd 的配置, 以下对应 httpd 安装在 /etc/httpd 中):
 :<<!
