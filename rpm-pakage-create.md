@@ -40,14 +40,11 @@ mv httpd-2.4.27.tar.bz2 ~/rpmbuild/SOURCES
 ### （3）使用 rpm 工具进行打包
 ```shell
 # 创建并编辑 ~/rpmbuild/SOURCES/httpd 如下(提供给启动脚本 httpd 的配置, 以下对应 httpd 安装在 /etc/httpd 中):
-:<<!
 HTTPD=/etc/httpd/bin/httpd
 PIDFILE=/etc/httpd/logs/httpd.pid
-!
 
 
 # 创建 ~/rpmbuild/SPECS/httpd2.4.spec 并编辑如下:
-:<<!
 Name:           httpd
 Version:        2.4.27
 Release:        1%{?dist}
@@ -65,7 +62,6 @@ Requires:       make
 %description
 a  web server
 
-
 %prep
 %setup -q
 %build
@@ -82,15 +78,13 @@ if  [ $1 == 1 ]; then
          /sbin/chkconfig  --add httpd
 fi
 %files
-!
+
 
 # 执行打包并测试安装:
 cd  ~/rpmbuild/SPECS
 rpmbuild -bb httpd2.4.spec
-# 如果没出错的话会在 ~/rpmbuild/RPMS 下的对应架构目录下生成两个rpm包, 一个是
-# 我们要的, 一个是 debug 信息包, 如:
-:<<!
+```
+如果没出错的话会在 ~/rpmbuild/RPMS 下的对应架构目录下生成两个rpm包, 一个是我们要的, 一个是 debug 信息包, 如:
 httpd-2.4.27-1.el6.x86_64.rpm
 httpd-debuginfo-2.4.27-1.el6.x86_64.rpm
-!
-```
+
