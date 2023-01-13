@@ -9,8 +9,7 @@
 * torchtext==0.6.0
 
 ## 2. 使用方法
-* STEP 1. 直接下载或克隆本项目：https://github.com/moon-hotel/TransformerCouplet
-* STEP 2. 可自定义修改配置文件`config.py`中的配置参数，也可以保持默认
+* 可自定义修改配置文件`config.py`中的配置参数，也可以保持默认
 ### 2.1 训练
 直接执行如下命令即可进行模型训练：
 ```
